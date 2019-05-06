@@ -1,14 +1,26 @@
-﻿<h2>Buildings</h2>
+﻿<div class="container">
+    <h2>Buildings</h2>
 
-<div class="container">
     <br />
-    <div style="width:90%; margin:0 auto;">
-        <table id="table-buildings" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0"></table>
+
+    <div class="row">
+        <div class="col-12">
+            <a class="btn btn-primary float-right" href="Building/Create">New Building</a>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-12">
+            <table id="table-buildings" class="table table-striped table-bordered dt-responsive nowrap"></table>
+        </div>
     </div>
 </div>
 
 @section Scripts {
-<script>(function () {
+<script>
+    (function () {
         $('#table-buildings').dataTable({
             serverSide: true,
             ajax: "/Building/DataTable",
@@ -33,6 +45,15 @@
                     title: "Available",
                     sortable: true,
                     searchable: false
+                },
+                {
+                    mData: "pkbuilding",
+                    title: "Actions",
+                    sortable: false,
+                    searchable: false,
+                    mRender: function (data, type, row) {
+                        return '<a class="btn btn-sm btn-secondary" href="Building/Edit/' + data + '">Edit</a> <a class="btn btn-sm btn-warning" href="Building/Delete/' + data + '">Delete</a>';
+                    }
                 }
             ]
         });
