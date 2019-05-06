@@ -27,7 +27,7 @@ namespace jabil_test.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Ignore<PartReport>();
+            //modelBuilder.Ignore<PartReport>();
 
             modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
