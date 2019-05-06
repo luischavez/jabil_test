@@ -9,7 +9,7 @@ using jabil_test.Models;
 namespace jabil_test.Migrations
 {
     [DbContext(typeof(MaterialsContext))]
-    [Migration("20190504222019_InitialCreate")]
+    [Migration("20190506224826_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,36 +24,59 @@ namespace jabil_test.Migrations
                 {
                     b.Property<int>("PKBuilding")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("PKBuilding")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Available");
 
                     b.Property<string>("Name")
-                        .HasColumnName("Building")
                         .IsRequired()
+                        .HasColumnName("Building")
                         .HasMaxLength(100)
                         .IsUnicode(false);
 
                     b.HasKey("PKBuilding");
 
                     b.ToTable("Buildings");
+
+                    b.HasData(
+                        new
+                        {
+                            PKBuilding = 1,
+                            Available = true,
+                            Name = "Building1"
+                        },
+                        new
+                        {
+                            PKBuilding = 2,
+                            Available = true,
+                            Name = "Building2"
+                        },
+                        new
+                        {
+                            PKBuilding = 3,
+                            Available = false,
+                            Name = "Building3"
+                        });
                 });
 
             modelBuilder.Entity("jabil_test.Models.Customer", b =>
                 {
                     b.Property<int>("PKCustomer")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("PKCustomer")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Available");
 
+                    b.Property<int>("FKBuilding")
+                        .HasColumnName("FKBuilding");
+
                     b.Property<string>("Name")
-                        .HasColumnName("Customer")
                         .IsRequired()
+                        .HasColumnName("Customer")
                         .HasMaxLength(100)
                         .IsUnicode(false);
-
-                    b.Property<int>("FKBuilding");
 
                     b.Property<string>("Prefix")
                         .IsRequired()
@@ -65,21 +88,49 @@ namespace jabil_test.Migrations
                     b.HasIndex("FKBuilding");
 
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            PKCustomer = 1,
+                            Available = true,
+                            FKBuilding = 1,
+                            Name = "Luis",
+                            Prefix = "cust1"
+                        },
+                        new
+                        {
+                            PKCustomer = 2,
+                            Available = true,
+                            FKBuilding = 2,
+                            Name = "Pedro",
+                            Prefix = "cust2"
+                        },
+                        new
+                        {
+                            PKCustomer = 3,
+                            Available = false,
+                            FKBuilding = 2,
+                            Name = "Juan",
+                            Prefix = "cust3"
+                        });
                 });
 
             modelBuilder.Entity("jabil_test.Models.PartNumber", b =>
                 {
                     b.Property<int>("PKPartNumber")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("PKPartNumber")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Available");
 
-                    b.Property<int>("FKCustomer");
+                    b.Property<int>("FKCustomer")
+                        .HasColumnName("FKCustomer");
 
                     b.Property<string>("Name")
-                        .HasColumnName("PartNumber")
                         .IsRequired()
+                        .HasColumnName("PartNumber")
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
@@ -88,6 +139,29 @@ namespace jabil_test.Migrations
                     b.HasIndex("FKCustomer");
 
                     b.ToTable("PartNumbers");
+
+                    b.HasData(
+                        new
+                        {
+                            PKPartNumber = 1,
+                            Available = true,
+                            FKCustomer = 1,
+                            Name = "P1231"
+                        },
+                        new
+                        {
+                            PKPartNumber = 2,
+                            Available = true,
+                            FKCustomer = 2,
+                            Name = "P5322"
+                        },
+                        new
+                        {
+                            PKPartNumber = 3,
+                            Available = false,
+                            FKCustomer = 2,
+                            Name = "P5232"
+                        });
                 });
 
             modelBuilder.Entity("jabil_test.Models.Customer", b =>

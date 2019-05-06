@@ -27,6 +27,8 @@ namespace jabil_test.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Ignore<PartReport>();
+
             modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
             modelBuilder.Entity<Building>(entity =>
@@ -85,7 +87,7 @@ namespace jabil_test.Models
 
                 entity.Property(e => e.PKPartNumber).HasColumnName("PKPartNumber");
 
-                entity.Property(e => e.PKPartNumber).HasColumnName("FKCustomer");
+                entity.Property(e => e.FKCustomer).HasColumnName("FKCustomer");
 
                 entity.Property(e => e.Name)
                     .HasColumnName("PartNumber")

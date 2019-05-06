@@ -64,6 +64,51 @@ namespace jabil_test.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Buildings",
+                columns: new[] { "PKBuilding", "Available", "Building" },
+                values: new object[] { 1, true, "Building1" });
+
+            migrationBuilder.InsertData(
+                table: "Buildings",
+                columns: new[] { "PKBuilding", "Available", "Building" },
+                values: new object[] { 2, true, "Building2" });
+
+            migrationBuilder.InsertData(
+                table: "Buildings",
+                columns: new[] { "PKBuilding", "Available", "Building" },
+                values: new object[] { 3, false, "Building3" });
+
+            migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "PKCustomer", "Available", "FKBuilding", "Customer", "Prefix" },
+                values: new object[] { 1, true, 1, "Luis", "cust1" });
+
+            migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "PKCustomer", "Available", "FKBuilding", "Customer", "Prefix" },
+                values: new object[] { 2, true, 2, "Pedro", "cust2" });
+
+            migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "PKCustomer", "Available", "FKBuilding", "Customer", "Prefix" },
+                values: new object[] { 3, false, 2, "Juan", "cust3" });
+
+            migrationBuilder.InsertData(
+                table: "PartNumbers",
+                columns: new[] { "PKPartNumber", "Available", "FKCustomer", "PartNumber" },
+                values: new object[] { 1, true, 1, "P1231" });
+
+            migrationBuilder.InsertData(
+                table: "PartNumbers",
+                columns: new[] { "PKPartNumber", "Available", "FKCustomer", "PartNumber" },
+                values: new object[] { 2, true, 2, "P5322" });
+
+            migrationBuilder.InsertData(
+                table: "PartNumbers",
+                columns: new[] { "PKPartNumber", "Available", "FKCustomer", "PartNumber" },
+                values: new object[] { 3, false, 2, "P5232" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_FKBuilding",
                 table: "Customers",
