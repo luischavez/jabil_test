@@ -19,6 +19,9 @@ namespace jabil_test.Controllers
         {
         }
 
+        /*
+         * Get part report data.
+         */
         private IEnumerable<PartReport> Report(PartReportSearch search = null)
         {
             var command = "EXECUTE [dbo].[FindParts] @PKPartNumber={0},@PartNumber={1},@PKCustomer={2},@Customer={3},@Available={4};";
@@ -34,6 +37,9 @@ namespace jabil_test.Controllers
             return _context.PartReport.FromSql(command, parameters).ToList();
         }
 
+        /*
+         * Report main view.
+         */
         public IActionResult Index(PartReportSearch search = null)
         {
             var report = Report(search);
@@ -43,6 +49,9 @@ namespace jabil_test.Controllers
             return View(report);
         }
 
+        /*
+         * Generates a excel report file to download.
+         */
         public IActionResult Excel(PartReportSearch search = null)
         {
             var now = DateTime.Now;
@@ -75,7 +84,7 @@ namespace jabil_test.Controllers
                 Row headerRow = new Row();
 
                 List<string> columns = new List<string>();
-                foreach (System.Data.DataColumn column in table.Columns)
+                foreach (DataColumn column in table.Columns)
                 {
                     columns.Add(column.ColumnName);
 
@@ -110,7 +119,10 @@ namespace jabil_test.Controllers
 
                 var bytes = stream.ToArray();
 
-                return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"PartNumberReport_{now}.xlsx");
+                return File(
+                    bytes, 
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", 
+                    $"PartNumberReport_{now}.xlsx");
             }
         }
     }

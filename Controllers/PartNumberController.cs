@@ -29,6 +29,7 @@ namespace jabil_test.Controllers
 
             var orderColums = request.Columns.Where(x => x.Sort != null);
 
+            // see Extensions/DataTableExtensions
             var dataPage = filteredData.OrderBy(orderColums).Skip(request.Start).Take(request.Length).ToList();
 
             var response = DataTablesResponse.Create(request, data.Count(), filteredData.Count(), dataPage);
@@ -36,11 +37,17 @@ namespace jabil_test.Controllers
             return new DataTablesJsonResult(response, true);
         }
 
+        /*
+         * List of part numbers.       
+         */
         public override IActionResult Index()
         {
             return View();
         }
 
+        /*
+         * Display a form to create new part numbers.
+         */
         public override IActionResult Create()
         {
             ViewData["Customers"] = new SelectList(_context.Customers.Where(c => c.Available).ToList(), "Pkcustomer", "Name");
@@ -48,6 +55,9 @@ namespace jabil_test.Controllers
             return View();
         }
 
+        /*
+         * Display a edit form.
+         */
         public override IActionResult Edit(int id)
         {
             var partNumber = _context.PartNumbers.Find(id);
@@ -62,6 +72,9 @@ namespace jabil_test.Controllers
             return View(partNumber);
         }
 
+        /*
+         * Stores new part number.
+         */
         public override IActionResult Store(PartNumber partNumber)
         {
             if (!ModelState.IsValid)
@@ -75,6 +88,9 @@ namespace jabil_test.Controllers
             return RedirectToAction("Index");
         }
 
+        /*
+         * Update part number data.
+         */
         public override IActionResult Update(PartNumber partNumber)
         {
             if (!ModelState.IsValid)
@@ -88,6 +104,9 @@ namespace jabil_test.Controllers
             return RedirectToAction("Index");
         }
 
+        /*
+         * Delete part number.
+         */
         public override IActionResult Delete(int id)
         {
             var partNumber = _context.PartNumbers.Find(id);

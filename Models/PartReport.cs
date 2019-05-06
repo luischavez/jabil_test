@@ -2,6 +2,9 @@
 
 namespace jabil_test.Models
 {
+    /*
+     * Map FindParts procedure results.
+     */
     public class PartReport
     {
         public int Id { get; set; }

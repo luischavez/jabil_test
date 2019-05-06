@@ -10,6 +10,9 @@ namespace jabil_test.Controllers
 {
     public class HomeController : Controller
     {
+        /*
+         * Display home view.
+         */
         public IActionResult Index()
         {
             return View();

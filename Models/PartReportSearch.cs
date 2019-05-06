@@ -2,6 +2,9 @@
 
 namespace jabil_test.Models
 {
+    /*
+     * Part report request.
+     */
     public class PartReportSearch
     {
         public int? PKPartNumber { get; set; }

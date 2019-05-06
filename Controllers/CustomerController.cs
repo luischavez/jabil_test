@@ -31,6 +31,7 @@ namespace jabil_test.Controllers
 
             var orderColums = request.Columns.Where(x => x.Sort != null);
 
+            // see Extensions/DataTableExtensions
             var dataPage = filteredData.OrderBy(orderColums).Skip(request.Start).Take(request.Length).ToList();
 
             var response = DataTablesResponse.Create(request, data.Count(), filteredData.Count(), dataPage);
@@ -38,11 +39,17 @@ namespace jabil_test.Controllers
             return new DataTablesJsonResult(response, true);
         }
 
+        /*
+         * List of customers.       
+         */
         public override IActionResult Index()
         {
             return View();
         }
 
+        /*
+         * Display a form to create new customers.
+         */
         public override IActionResult Create()
         {
             ViewData["Buildings"] = new SelectList(_context.Buildings.Where(b => b.Available).ToList(), "Pkbuilding", "Name");
@@ -50,6 +57,9 @@ namespace jabil_test.Controllers
             return View();
         }
 
+        /*
+         * Display a edit form.
+         */
         public override IActionResult Edit(int id)
         {
             var customer = _context.Customers.Find(id);
@@ -64,6 +74,9 @@ namespace jabil_test.Controllers
             return View(customer);
         }
 
+        /*
+         * Stores new customer.
+         */
         public override IActionResult Store(Customer customer)
         {
             if (!ModelState.IsValid)
@@ -77,6 +90,9 @@ namespace jabil_test.Controllers
             return RedirectToAction("Index");
         }
 
+        /*
+         * Update customer data.
+         */
         public override IActionResult Update(Customer customer)
         {
             if (!ModelState.IsValid)
@@ -90,6 +106,9 @@ namespace jabil_test.Controllers
             return RedirectToAction("Index");
         }
 
+        /*
+         * Delete customer.
+         */
         public override IActionResult Delete(int id)
         {
             var customer = _context.Customers.Find(id);

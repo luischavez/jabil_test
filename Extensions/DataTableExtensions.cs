@@ -7,6 +7,9 @@ namespace jabil_test.Extensions
 {
     public static class DataTableExtensions
     {
+        /*
+         * Add a OrderBy extension in IQueryable<T> to handle datatables sorting.
+         */
         public static IQueryable<T> OrderBy<T>(this IQueryable<T> source, IEnumerable<DataTables.AspNet.Core.IColumn> sortModels)
         {
             var expression = source.Expression;

@@ -28,6 +28,7 @@ namespace jabil_test.Controllers
 
             var orderColums = request.Columns.Where(x => x.Sort != null);
 
+            // see Extensions/DataTableExtensions
             var dataPage = filteredData.OrderBy(orderColums).Skip(request.Start).Take(request.Length).ToList();
 
             var response = DataTablesResponse.Create(request, data.Count(), filteredData.Count(), dataPage);
@@ -35,16 +36,25 @@ namespace jabil_test.Controllers
             return new DataTablesJsonResult(response, true);
         }
 
+        /*
+         * List of buildings.       
+         */
         public override IActionResult Index()
         {
             return View();
         }
 
+        /*
+         * Display a form to create new buildings.
+         */
         public override IActionResult Create()
         {
             return View();
         }
 
+        /*
+         * Display a edit form.
+         */
         public override IActionResult Edit(int id)
         {
             var building = _context.Buildings.Find(id);
@@ -57,6 +67,9 @@ namespace jabil_test.Controllers
             return View(building);
         }
 
+        /*
+         * Stores new building.
+         */
         public override IActionResult Store(Building building)
         {
             if (!ModelState.IsValid)
@@ -70,6 +83,9 @@ namespace jabil_test.Controllers
             return RedirectToAction("Index");
         }
 
+        /*
+         * Update building data.
+         */
         public override IActionResult Update(Building building)
         {
             if (!ModelState.IsValid)
@@ -83,6 +99,9 @@ namespace jabil_test.Controllers
             return RedirectToAction("Index");
         }
 
+        /*
+         * Delete building.
+         */
         public override IActionResult Delete(int id)
         {
             var building = _context.Buildings.Find(id);
