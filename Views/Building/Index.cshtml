@@ -23,42 +23,42 @@
 </div>
 
 @section Scripts {
-    <script>(function () {
-            $('#table-buildings').dataTable({
-                serverSide: true,
-                ajax: "/Building/DataTable",
-                columns: [
-                    {
-                        name: 'pkbuilding',
-                        data: 'pkbuilding',
-                        title: "PKBuilding",
-                        sortable: true,
-                        searchable: false
-                    },
-                    {
-                        name: 'name',
-                        data: "name",
-                        title: "Building",
-                        sortable: true,
-                        searchable: false
-                    },
-                    {
-                        name: 'available',
-                        data: "available",
-                        title: "Available",
-                        sortable: true,
-                        searchable: false
-                    },
-                    {
-                        mData: "pkbuilding",
-                        title: "Actions",
-                        sortable: false,
-                        searchable: false,
-                        mRender: function (data, type, row) {
-                            return '<a class="btn btn-sm btn-secondary" href="Building/Edit/' + data + '">Edit</a> <a class="btn btn-sm btn-warning" href="Building/Delete/' + data + '">Delete</a>';
-                        }
+<script>(function () {
+        $('#table-buildings').dataTable({
+            serverSide: true,
+            ajax: "/Building/DataTable",
+            columns: [
+                {
+                    name: 'pkBuilding',
+                    data: 'pkBuilding',
+                    title: "PKBuilding",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'name',
+                    data: "name",
+                    title: "Building",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'available',
+                    data: "available",
+                    title: "Available",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    mData: "pkBuilding",
+                    title: "Actions",
+                    sortable: false,
+                    searchable: false,
+                    mRender: function (data, type, row) {
+                        return '<a class="btn btn-sm btn-secondary" href="Building/Edit/' + data + '">Edit</a> <a class="btn btn-sm btn-warning" href="Building/Delete/' + data + '">Delete</a>';
                     }
-                ]
-            });
-        })();</script>
+                }
+            ]
+        });
+    })();</script>
 }

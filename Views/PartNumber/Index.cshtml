@@ -23,49 +23,49 @@
 </div>
 
 @section Scripts {
-    <script>(function () {
-            $('#table-part-numbers').dataTable({
-                serverSide: true,
-                ajax: "/PartNumber/DataTable",
-                columns: [
-                    {
-                        name: 'pkpartNumber',
-                        data: 'pkpartNumber',
-                        title: "PKPartNumber",
-                        sortable: true,
-                        searchable: false
-                    },
-                    {
-                        name: 'name',
-                        data: "name",
-                        title: "PartNumber",
-                        sortable: true,
-                        searchable: false
-                    },
-                    {
-                        name: 'customer',
-                        data: "customer.name",
-                        title: "Customer",
-                        sortable: false,
-                        searchable: false
-                    },
-                    {
-                        name: 'available',
-                        data: "available",
-                        title: "Available",
-                        sortable: true,
-                        searchable: false
-                    },
-                    {
-                        mData: "pkpartNumber",
-                        title: "Actions",
-                        sortable: false,
-                        searchable: false,
-                        mRender: function (data, type, row) {
-                            return '<a class="btn btn-sm btn-secondary" href="PartNumber/Edit/' + data + '">Edit</a> <a class="btn btn-sm btn-warning" href="PartNumber/Delete/' + data + '">Delete</a>';
-                        }
+<script>(function () {
+        $('#table-part-numbers').dataTable({
+            serverSide: true,
+            ajax: "/PartNumber/DataTable",
+            columns: [
+                {
+                    name: 'pkPartNumber',
+                    data: 'pkPartNumber',
+                    title: "PKPartNumber",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'name',
+                    data: "name",
+                    title: "PartNumber",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'customer',
+                    data: "customer.name",
+                    title: "Customer",
+                    sortable: false,
+                    searchable: false
+                },
+                {
+                    name: 'available',
+                    data: "available",
+                    title: "Available",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    mData: "pkPartNumber",
+                    title: "Actions",
+                    sortable: false,
+                    searchable: false,
+                    mRender: function (data, type, row) {
+                        return '<a class="btn btn-sm btn-secondary" href="PartNumber/Edit/' + data + '">Edit</a> <a class="btn btn-sm btn-warning" href="PartNumber/Delete/' + data + '">Delete</a>';
                     }
-                ]
-            });
-        })();</script>
+                }
+            ]
+        });
+    })();</script>
 }
