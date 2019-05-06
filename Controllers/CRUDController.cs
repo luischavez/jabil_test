@@ -20,10 +20,10 @@ namespace jabil_test.Controllers
 
         public abstract IActionResult Store();
 
-        public abstract IActionResult Edit();
+        public abstract IActionResult Edit(int id);
 
-        public abstract IActionResult Update();
+        public abstract IActionResult Update(int id);
 
-        public abstract IActionResult Delete();
+        public abstract IActionResult Delete(int id);
     }
 }

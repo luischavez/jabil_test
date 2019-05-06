@@ -45,7 +45,7 @@ namespace jabil_test.Controllers
             return View();
         }
 
-        public override IActionResult Edit()
+        public override IActionResult Edit(int id)
         {
             return View();
         }
@@ -55,14 +55,19 @@ namespace jabil_test.Controllers
             throw new System.NotImplementedException();
         }
 
-        public override IActionResult Update()
+        public override IActionResult Update(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public override IActionResult Delete()
+        public override IActionResult Delete(int id)
         {
-            throw new System.NotImplementedException();
+            var building = _context.Buildings.Find(id);
+
+            _context.Buildings.Remove(building);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }
