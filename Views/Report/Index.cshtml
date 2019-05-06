@@ -13,10 +13,10 @@
         <div class="col-12">
             <form asp-action="Excel" asp-controller="Report">
                 <input type="hidden" name="PKPartNumber" value="@ViewBag.Search.PKPartNumber" />
-                <input type="hidden" name="PKPartNumber" value="@ViewBag.Search.PartNumber" />
-                <input type="hidden" name="PKPartNumber" value="@ViewBag.Search.PKCustomer" />
-                <input type="hidden" name="PKPartNumber" value="@ViewBag.Search.Customer" />
-                <input type="hidden" name="PKPartNumber" value="@ViewBag.Search.Available" />
+                <input type="hidden" name="PartNumber" value="@ViewBag.Search.PartNumber" />
+                <input type="hidden" name="PKCustomer" value="@ViewBag.Search.PKCustomer" />
+                <input type="hidden" name="Customer" value="@ViewBag.Search.Customer" />
+                <input type="hidden" name="Available" value="@ViewBag.Search.Available" />
                 <input type="submit" class="btn btn-primary float-right" value="Excel" />
             </form>
         </div>
