@@ -1,5 +1,9 @@
 ﻿@model Customer
 
+@{
+    ViewData["Title"] = "Edit Customer";
+}
+
 <div class="container">
     <h2>Edit Customer</h2>
 
@@ -47,7 +51,7 @@
 @section scripts{
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
-    <script>(function() {
+    <script>(function () {
             $('.input-validation-error').parents('.form-group').addClass('has-error');
             $('.field-validation-error').addClass('text-danger');
         })();</script>

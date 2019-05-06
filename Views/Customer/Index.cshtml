@@ -1,4 +1,8 @@
-﻿<div class="container">
+﻿@{
+    ViewData["Title"] = "Customers";
+}
+
+<div class="container">
     <h2>Customers</h2>
 
     <br />
@@ -19,56 +23,56 @@
 </div>
 
 @section Scripts {
-<script>(function () {
-        $('#table-customers').dataTable({
-            serverSide: true,
-            ajax: "/Customer/DataTable",
-            columns: [
-                {
-                    name: 'pkcustomer',
-                    data: 'pkcustomer',
-                    title: "PKCustomer",
-                    sortable: true,
-                    searchable: false
-                },
-                {
-                    name: 'name',
-                    data: "name",
-                    title: "Customer",
-                    sortable: true,
-                    searchable: false
-                },
-                {
-                    name: 'prefix',
-                    data: "prefix",
-                    title: "Prefix",
-                    sortable: true,
-                    searchable: false
-                },
-                {
-                    name: 'building',
-                    data: "building.name",
-                    title: "Building",
-                    sortable: false,
-                    searchable: false
-                },
-                {
-                    name: 'available',
-                    data: "available",
-                    title: "Available",
-                    sortable: true,
-                    searchable: false
-                },
-                {
-                    mData: "pkcustomer",
-                    title: "Actions",
-                    sortable: false,
-                    searchable: false,
-                    mRender: function (data, type, row) {
-                        return '<a class="btn btn-sm btn-secondary" href="Customer/Edit/' + data + '">Edit</a> <a class="btn btn-sm btn-warning" href="Customer/Delete/' + data + '">Delete</a>';
+    <script>(function () {
+            $('#table-customers').dataTable({
+                serverSide: true,
+                ajax: "/Customer/DataTable",
+                columns: [
+                    {
+                        name: 'pkcustomer',
+                        data: 'pkcustomer',
+                        title: "PKCustomer",
+                        sortable: true,
+                        searchable: false
+                    },
+                    {
+                        name: 'name',
+                        data: "name",
+                        title: "Customer",
+                        sortable: true,
+                        searchable: false
+                    },
+                    {
+                        name: 'prefix',
+                        data: "prefix",
+                        title: "Prefix",
+                        sortable: true,
+                        searchable: false
+                    },
+                    {
+                        name: 'building',
+                        data: "building.name",
+                        title: "Building",
+                        sortable: false,
+                        searchable: false
+                    },
+                    {
+                        name: 'available',
+                        data: "available",
+                        title: "Available",
+                        sortable: true,
+                        searchable: false
+                    },
+                    {
+                        mData: "pkcustomer",
+                        title: "Actions",
+                        sortable: false,
+                        searchable: false,
+                        mRender: function (data, type, row) {
+                            return '<a class="btn btn-sm btn-secondary" href="Customer/Edit/' + data + '">Edit</a> <a class="btn btn-sm btn-warning" href="Customer/Delete/' + data + '">Delete</a>';
+                        }
                     }
-                }
-            ]
-        });
-    })();</script>
+                ]
+            });
+        })();</script>
 }
