@@ -45,7 +45,7 @@ namespace jabil_test.Controllers
 
         public override IActionResult Create()
         {
-            ViewData["Buildings"] = new SelectList(_context.Buildings.ToList(), "Pkbuilding", "Name");
+            ViewData["Buildings"] = new SelectList(_context.Buildings.Where(b => b.Available).ToList(), "Pkbuilding", "Name");
 
             return View();
         }
@@ -59,7 +59,7 @@ namespace jabil_test.Controllers
                 return NotFound();
             }
 
-            ViewData["Buildings"] = new SelectList(_context.Buildings.ToList(), "Pkbuilding", "Name");
+            ViewData["Buildings"] = new SelectList(_context.Buildings.Where(b => b.Available).ToList(), "Pkbuilding", "Name");
 
             return View(customer);
         }
