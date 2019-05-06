@@ -8,17 +8,11 @@ using jabil_test.Models;
 
 namespace jabil_test.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
-        public HomeController(MaterialsContext context): base(context)
-        {
-        }
-
         public IActionResult Index()
         {
-            var Buildings = _context.Buildings.ToList();
-
-            return View(Buildings);
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

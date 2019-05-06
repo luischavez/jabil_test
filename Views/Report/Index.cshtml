@@ -1,0 +1,84 @@
+﻿@model List<PartReport>
+
+@{
+    ViewData["Title"] = "Part Number Report";
+}
+
+<div class="container">
+    <h2>Part Number Report</h2>
+
+    <br />
+
+    <div class="row">
+        <div class="col-12">
+            <a asp-action="Excel" asp-controller="Report" class="btn btn-primary float-right">Excel</a>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-12">
+            <form asp-action="Index" asp-controller="Report">
+                <div class="form-group">
+                    <label for="PKPartNumber">PKPartNumber</label>
+                    <input id="PKPartNumber" type="text" name="PKPartNumber" class="form-control" value="@ViewBag.Search.PKPartNumber" />
+                </div>
+                <div class="form-group">
+                    <label for="PartNumber">Part Number</label>
+                    <input id="PartNumber" type="text" name="PartNumber" class="form-control" value="@ViewBag.Search.PartNumber" />
+                </div>
+                <div class="form-group">
+                    <label for="PKCustomer">PKCustomer</label>
+                    <input id="PKCustomer" type="text" name="PKCustomer" class="form-control" value="@ViewBag.Search.PKCustomer" />
+                </div>
+                <div class="form-group">
+                    <label for="Customer">Customer</label>
+                    <input id="Customer" type="text" name="Customer" class="form-control" value="@ViewBag.Search.Customer" />
+                </div>
+                <div class="form-group form-check">
+                    @if (ViewBag.Search.Available == "on")
+                    {
+                    <input id="Available" type="checkbox" name="Available" class="form-check-input" checked>
+                    }
+                    @if (ViewBag.Search.Available != "on")
+                    {
+                    <input id="Available" type="checkbox" name="Available" class="form-check-input">
+                    }
+                    <label for="Available" class="form-check-label">Available</label>
+                </div>
+                <input type="submit" class="btn btn-primary" btn-primary value="Search" />
+            </form>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped table-bordered dt-responsive nowrap">
+                <thead>
+                    <tr>
+                        <th>PKPartNumber</th>
+                        <th>PartNumber</th>
+                        <th>Customer</th>
+                        <th>Building</th>
+                        <th>Available</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var part in @Model)
+                    {
+                        <tr>
+                            <td>@part.PKPartNumber</td>
+                            <td>@part.PartNumber</td>
+                            <td>@part.Customer</td>
+                            <td>@part.Building</td>
+                            <td>@part.Available</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -19,5 +19,6 @@
     <Folder Include="Views\Customer\" />
     <Folder Include="Views\PartNumber\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Views\Report\" />
   </ItemGroup>
 </Project>

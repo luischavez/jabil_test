@@ -19,6 +19,7 @@ namespace jabil_test.Models
         public virtual DbSet<Building> Buildings { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<PartNumber> PartNumbers { get; set; }
+        public virtual DbSet<PartReport> PartReport { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
