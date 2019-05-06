@@ -1,18 +1,26 @@
-﻿@model Building
+﻿@model PartNumber
 
 <div class="container">
-    <h2>Create Building</h2>
+    <h2>Edit Part Number</h2>
 
     <hr />
 
     <div class="row">
         <div class="col-12">
-            <form asp-action="Store" asp-controller="Building" method="post">
+            <form asp-action="Update" asp-controller="PartNumber" method="post">
+                <input asp-for="PkpartNumber" type="hidden" />
                 <div class="form-group">
                     <label asp-for="Name"></label>
-                    <input asp-for="Name" class="form-control" placeholder="Building name" />
+                    <input asp-for="Name" class="form-control" placeholder="Part Number" />
                     <div>
                         <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Fkcustomer"></label>
+                    <select asp-for="Fkcustomer" asp-items="ViewBag.Customers" class="form-control"></select>
+                    <div>
+                        <span asp-validation-for="Fkcustomer" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group form-check">
@@ -22,8 +30,8 @@
                         <span asp-validation-for="Available" class="text-danger"></span>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Create</button>
-                <a asp-action="Index" asp-controller="Building" class="btn btn-secondary">Back</a>
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a asp-action="Index" asp-controller="PartNumber" class="btn btn-secondary">Back</a>
             </form>
         </div>
     </div>
@@ -32,10 +40,8 @@
 @section scripts{
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
-    <script>
-        (function() {
+    <script>(function() {
             $('.input-validation-error').parents('.form-group').addClass('has-error');
             $('.field-validation-error').addClass('text-danger');
-        })();
-    </script>
+        })();</script>
 }

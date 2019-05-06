@@ -10,7 +10,7 @@ using jabil_test.Extensions;
 
 namespace jabil_test.Controllers
 {
-    public class BuildingController : CRUDController
+    public class BuildingController : CRUDController<Building>
     {
         public BuildingController(MaterialsContext context) : base(context)
         {
@@ -47,17 +47,40 @@ namespace jabil_test.Controllers
 
         public override IActionResult Edit(int id)
         {
-            return View();
+            var building = _context.Buildings.Find(id);
+
+            if (building == null)
+            {
+                return NotFound();
+            }
+
+            return View(building);
         }
 
-        public override IActionResult Store()
+        public override IActionResult Store(Building building)
         {
-            throw new System.NotImplementedException();
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Create");
+            }
+
+            _context.Buildings.Add(building);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
-        public override IActionResult Update(int id)
+        public override IActionResult Update(Building building)
         {
-            throw new System.NotImplementedException();
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Edit", new { id = building.Pkbuilding });
+            }
+
+            _context.Buildings.Update(building);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         public override IActionResult Delete(int id)

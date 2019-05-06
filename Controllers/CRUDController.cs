@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace jabil_test.Controllers
 {
-    public abstract class CRUDController : BaseController
+    public abstract class CRUDController<T> : BaseController
     {
         protected CRUDController(MaterialsContext context) : base(context)
         {
@@ -18,11 +18,11 @@ namespace jabil_test.Controllers
 
         public abstract IActionResult Create();
 
-        public abstract IActionResult Store();
+        public abstract IActionResult Store(T t);
 
         public abstract IActionResult Edit(int id);
 
-        public abstract IActionResult Update(int id);
+        public abstract IActionResult Update(T t);
 
         public abstract IActionResult Delete(int id);
     }

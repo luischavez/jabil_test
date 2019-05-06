@@ -6,13 +6,15 @@ using System;
 using DataTables.AspNet.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using jabil_test.Extensions;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace jabil_test.Controllers
 {
-    public class CustomerController: CRUDController
+    public class CustomerController: CRUDController<Customer>
     {
         public CustomerController(MaterialsContext context) : base(context)
         {
+
         }
 
         public override IActionResult DataTable(IDataTablesRequest request)
@@ -43,22 +45,49 @@ namespace jabil_test.Controllers
 
         public override IActionResult Create()
         {
+            ViewData["Buildings"] = new SelectList(_context.Buildings.ToList(), "Pkbuilding", "Name");
+
             return View();
         }
 
         public override IActionResult Edit(int id)
         {
-            return View();
+            var customer = _context.Customers.Find(id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            ViewData["Buildings"] = new SelectList(_context.Buildings.ToList(), "Pkbuilding", "Name");
+
+            return View(customer);
         }
 
-        public override IActionResult Store()
+        public override IActionResult Store(Customer customer)
         {
-            throw new System.NotImplementedException();
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Create");
+            }
+
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
-        public override IActionResult Update(int id)
+        public override IActionResult Update(Customer customer)
         {
-            throw new System.NotImplementedException();
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Edit", new { id = customer.Pkcustomer });
+            }
+
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         public override IActionResult Delete(int id)
