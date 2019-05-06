@@ -1,0 +1,54 @@
+﻿<h2>Customers</h2>
+
+<div class="container">
+    <br />
+    <div style="width:90%; margin:0 auto;">
+        <table id="table-customers" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0"></table>
+    </div>
+</div>
+
+@section Scripts {
+<script>(function () {
+        $('#table-customers').dataTable({
+            serverSide: true,
+            ajax: "/Customer/DataTable",
+            columns: [
+                {
+                    name: 'pkcustomer',
+                    data: 'pkcustomer',
+                    title: "PKCustomer",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'name',
+                    data: "name",
+                    title: "Customer",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'prefix',
+                    data: "prefix",
+                    title: "Prefix",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'building',
+                    data: "building.name",
+                    title: "Building",
+                    sortable: false,
+                    searchable: false
+                },
+                {
+                    name: 'available',
+                    data: "available",
+                    title: "Available",
+                    sortable: true,
+                    searchable: false
+                }
+            ]
+        });
+    })();</script>
+}
