@@ -11,7 +11,14 @@
 
     <div class="row">
         <div class="col-12">
-            <a asp-action="Excel" asp-controller="Report" class="btn btn-primary float-right">Excel</a>
+            <form asp-action="Excel" asp-controller="Report">
+                <input type="hidden" name="PKPartNumber" value="@ViewBag.Search.PKPartNumber" />
+                <input type="hidden" name="PKPartNumber" value="@ViewBag.Search.PartNumber" />
+                <input type="hidden" name="PKPartNumber" value="@ViewBag.Search.PKCustomer" />
+                <input type="hidden" name="PKPartNumber" value="@ViewBag.Search.Customer" />
+                <input type="hidden" name="PKPartNumber" value="@ViewBag.Search.Available" />
+                <input type="submit" class="btn btn-primary float-right" value="Excel" />
+            </form>
         </div>
     </div>
 
