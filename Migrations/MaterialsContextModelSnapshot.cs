@@ -20,35 +20,31 @@ namespace jabil_test.Migrations
 
             modelBuilder.Entity("jabil_test.Models.Building", b =>
                 {
-                    b.Property<int>("Pkbuilding")
+                    b.Property<int>("PKBuilding")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("PKBuilding")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Available");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnName("Building")
                         .HasMaxLength(100)
                         .IsUnicode(false);
 
-                    b.HasKey("Pkbuilding");
+                    b.HasKey("PKBuilding");
 
                     b.ToTable("Buildings");
                 });
 
             modelBuilder.Entity("jabil_test.Models.Customer", b =>
                 {
-                    b.Property<int>("Pkcustomer")
+                    b.Property<int>("PKCustomer")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("PKCustomer")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Available");
 
-                    b.Property<int>("Fkbuilding")
-                        .HasColumnName("FKBuilding");
+                    b.Property<int>("FKBuilding");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -61,24 +57,22 @@ namespace jabil_test.Migrations
                         .HasMaxLength(5)
                         .IsUnicode(false);
 
-                    b.HasKey("Pkcustomer");
+                    b.HasKey("PKCustomer");
 
-                    b.HasIndex("Fkbuilding");
+                    b.HasIndex("FKBuilding");
 
                     b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("jabil_test.Models.PartNumber", b =>
                 {
-                    b.Property<int>("PkpartNumber")
+                    b.Property<int>("PKPartNumber")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("PKPartNumber")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Available");
 
-                    b.Property<int>("Fkcustomer")
-                        .HasColumnName("FKCustomer");
+                    b.Property<int>("FKCustomer");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -86,9 +80,9 @@ namespace jabil_test.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.HasKey("PkpartNumber");
+                    b.HasKey("PKPartNumber");
 
-                    b.HasIndex("Fkcustomer");
+                    b.HasIndex("FKCustomer");
 
                     b.ToTable("PartNumbers");
                 });
@@ -97,7 +91,7 @@ namespace jabil_test.Migrations
                 {
                     b.HasOne("jabil_test.Models.Building", "Building")
                         .WithMany("Customers")
-                        .HasForeignKey("Fkbuilding")
+                        .HasForeignKey("FKBuilding")
                         .HasConstraintName("FK_Customers_Buildings")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -106,7 +100,7 @@ namespace jabil_test.Migrations
                 {
                     b.HasOne("jabil_test.Models.Customer", "Customer")
                         .WithMany("PartNumbers")
-                        .HasForeignKey("Fkcustomer")
+                        .HasForeignKey("FKCustomer")
                         .HasConstraintName("FK_PartNumbers_Customers")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

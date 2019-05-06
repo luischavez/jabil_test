@@ -12,7 +12,7 @@ namespace jabil_test.Models
             Customers = new HashSet<Customer>();
         }
 
-        public int Pkbuilding { get; set; }
+        public int PKBuilding { get; set; }
 
         [Required, MaxLength(100), MinLength(1)]
         public string Name { get; set; }

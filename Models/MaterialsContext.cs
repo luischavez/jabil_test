@@ -31,22 +31,27 @@ namespace jabil_test.Models
 
             modelBuilder.Entity<Building>(entity =>
             {
-                entity.HasKey(e => e.Pkbuilding);
+                entity.HasKey(e => e.PKBuilding);
 
-                entity.Property(e => e.Pkbuilding).HasColumnName("PKBuilding");
+                entity.Property(e => e.PKBuilding).HasColumnName("PKBuilding");
 
                 entity.Property(e => e.Name)
                     .HasColumnName("Building")
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.HasData(
+                    new { PKBuilding = 1, Name = "Building1", Available = true },
+                    new { PKBuilding = 2, Name = "Building2", Available = true },
+                    new { PKBuilding = 3, Name = "Building3", Available = false });
             });
 
             modelBuilder.Entity<Customer>(entity =>
             {
-                entity.HasKey(e => e.Pkcustomer);
+                entity.HasKey(e => e.PKCustomer);
 
-                entity.Property(e => e.Pkcustomer).HasColumnName("PKCustomer");
+                entity.Property(e => e.PKCustomer).HasColumnName("PKCustomer");
 
                 entity.Property(e => e.Name)
                     .HasColumnName("Customer")
@@ -54,7 +59,7 @@ namespace jabil_test.Models
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Fkbuilding).HasColumnName("FKBuilding");
+                entity.Property(e => e.FKBuilding).HasColumnName("FKBuilding");
 
                 entity.Property(e => e.Prefix)
                     .IsRequired()
@@ -63,19 +68,24 @@ namespace jabil_test.Models
 
                 entity.HasOne(d => d.Building)
                     .WithMany(p => p.Customers)
-                    .HasForeignKey(d => d.Fkbuilding)
+                    .HasForeignKey(d => d.FKBuilding)
                     .HasConstraintName("FK_Customers_Buildings")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
+
+                entity.HasData(
+                    new { PKCustomer = 1, Name = "Luis", Prefix = "cust1", FKBuilding = 1, Available = true },
+                    new { PKCustomer = 2, Name = "Pedro", Prefix = "cust2", FKBuilding = 2, Available = true },
+                    new { PKCustomer = 3, Name = "Juan", Prefix = "cust3", FKBuilding = 2, Available = false });
             });
 
             modelBuilder.Entity<PartNumber>(entity =>
             {
-                entity.HasKey(e => e.PkpartNumber);
+                entity.HasKey(e => e.PKPartNumber);
 
-                entity.Property(e => e.PkpartNumber).HasColumnName("PKPartNumber");
+                entity.Property(e => e.PKPartNumber).HasColumnName("PKPartNumber");
 
-                entity.Property(e => e.Fkcustomer).HasColumnName("FKCustomer");
+                entity.Property(e => e.PKPartNumber).HasColumnName("FKCustomer");
 
                 entity.Property(e => e.Name)
                     .HasColumnName("PartNumber")
@@ -85,10 +95,15 @@ namespace jabil_test.Models
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.PartNumbers)
-                    .HasForeignKey(d => d.Fkcustomer)
+                    .HasForeignKey(d => d.FKCustomer)
                     .HasConstraintName("FK_PartNumbers_Customers")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
+
+                entity.HasData(
+                    new { PKPartNumber = 1, Name = "P1231", FKCustomer = 1, Available = true },
+                    new { PKPartNumber = 2, Name = "P5322", FKCustomer = 2, Available = true },
+                    new { PKPartNumber = 3, Name = "P5232", FKCustomer = 2, Available = false });
             });
         }
     }

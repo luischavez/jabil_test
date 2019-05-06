@@ -90,7 +90,7 @@ namespace jabil_test.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Edit", new { id = building.Pkbuilding });
+                return RedirectToAction("Edit", new { id = building.PKBuilding });
             }
 
             _context.Buildings.Update(building);

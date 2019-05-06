@@ -12,7 +12,7 @@ namespace jabil_test.Models
             PartNumbers = new HashSet<PartNumber>();
         }
 
-        public int Pkcustomer { get; set; }
+        public int PKCustomer { get; set; }
 
         [Required, MaxLength(100), MinLength(1)]
         public string Name { get; set; }
@@ -21,7 +21,7 @@ namespace jabil_test.Models
         public string Prefix { get; set; }
 
         [Required]
-        public int Fkbuilding { get; set; }
+        public int FKBuilding { get; set; }
 
         [Required]
         public bool Available { get; set; }

@@ -6,13 +6,13 @@ namespace jabil_test.Models
 {
     public partial class PartNumber
     {
-        public int PkpartNumber { get; set; }
+        public int PKPartNumber { get; set; }
 
         [Required, MaxLength(100), MinLength(1)]
         public string Name { get; set; }
 
         [Required]
-        public int Fkcustomer { get; set; }
+        public int FKCustomer { get; set; }
 
         [Required]
         public bool Available { get; set; }

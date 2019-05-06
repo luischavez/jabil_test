@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-12">
             <form asp-action="Update" asp-controller="PartNumber" method="post">
-                <input asp-for="PkpartNumber" type="hidden" />
+                <input asp-for="PKPartNumber" type="hidden" />
                 <div class="form-group">
                     <label asp-for="Name"></label>
                     <input asp-for="Name" class="form-control" placeholder="Part Number" />
@@ -21,10 +21,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Fkcustomer"></label>
-                    <select asp-for="Fkcustomer" asp-items="ViewBag.Customers" class="form-control"></select>
+                    <label asp-for="FKCustomer"></label>
+                    <select asp-for="FKCustomer" asp-items="ViewBag.Customers" class="form-control"></select>
                     <div>
-                        <span asp-validation-for="Fkcustomer" class="text-danger"></span>
+                        <span asp-validation-for="FKCustomer" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group form-check">

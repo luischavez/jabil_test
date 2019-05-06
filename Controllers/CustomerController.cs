@@ -52,7 +52,7 @@ namespace jabil_test.Controllers
          */
         public override IActionResult Create()
         {
-            ViewData["Buildings"] = new SelectList(_context.Buildings.Where(b => b.Available).ToList(), "Pkbuilding", "Name");
+            ViewData["Buildings"] = new SelectList(_context.Buildings.Where(b => b.Available).ToList(), "PKBuilding", "Name");
 
             return View();
         }
@@ -69,7 +69,7 @@ namespace jabil_test.Controllers
                 return NotFound();
             }
 
-            ViewData["Buildings"] = new SelectList(_context.Buildings.Where(b => b.Available).ToList(), "Pkbuilding", "Name");
+            ViewData["Buildings"] = new SelectList(_context.Buildings.Where(b => b.Available).ToList(), "PKBuilding", "Name");
 
             return View(customer);
         }
@@ -97,7 +97,7 @@ namespace jabil_test.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Edit", new { id = customer.Pkcustomer });
+                return RedirectToAction("Edit", new { id = customer.PKCustomer });
             }
 
             _context.Customers.Update(customer);
